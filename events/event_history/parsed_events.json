@@ -1,0 +1,89 @@
+{
+    "summary": {
+        "total_frames": 254,
+        "total_unique_persons": 4,
+        "fps": 25
+    },
+    "tracked_persons": {
+        "person_1": {
+            "person_id": 1,
+            "class": "person",
+            "start_frame": 28,
+            "end_frame": 70,
+            "total_frames": 37,
+            "last_bbox": [
+                45.5461311340332,
+                320.21826171875,
+                738.8032836914062,
+                717.3412475585938
+            ],
+            "has_pose": true,
+            "detected_behavior": "Fighting",
+            "behavior_confidence": 0.83,
+            "weapon_detected": true,
+            "start_time_sec": 1.12,
+            "end_time_sec": 2.8,
+            "duration_sec": 1.48
+        },
+        "person_3": {
+            "person_id": 3,
+            "class": "person",
+            "start_frame": 59,
+            "end_frame": 69,
+            "total_frames": 8,
+            "last_bbox": [
+                76.01129150390625,
+                255.62017822265625,
+                719.387939453125,
+                711.9799194335938
+            ],
+            "has_pose": true,
+            "detected_behavior": "Fighting",
+            "behavior_confidence": 0.6,
+            "weapon_detected": true,
+            "start_time_sec": 2.36,
+            "end_time_sec": 2.76,
+            "duration_sec": 0.32
+        },
+        "person_6": {
+            "person_id": 6,
+            "class": "person",
+            "start_frame": 157,
+            "end_frame": 196,
+            "total_frames": 37,
+            "last_bbox": [
+                327.3497314453125,
+                441.80426025390625,
+                863.6876220703125,
+                711.8064575195312
+            ],
+            "has_pose": true,
+            "detected_behavior": "Fighting",
+            "behavior_confidence": 0.88,
+            "weapon_detected": true,
+            "start_time_sec": 6.28,
+            "end_time_sec": 7.84,
+            "duration_sec": 1.48
+        },
+        "person_14": {
+            "person_id": 14,
+            "class": "person",
+            "start_frame": 237,
+            "end_frame": 238,
+            "total_frames": 2,
+            "last_bbox": [
+                549.876708984375,
+                380.971435546875,
+                1280.0,
+                714.3115844726562
+            ],
+            "has_pose": true,
+            "detected_behavior": "Normal Movement",
+            "behavior_confidence": 0.0,
+            "weapon_detected": true,
+            "start_time_sec": 9.48,
+            "end_time_sec": 9.52,
+            "duration_sec": 0.08
+        }
+    }
+}

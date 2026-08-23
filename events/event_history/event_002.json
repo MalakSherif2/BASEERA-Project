@@ -1,0 +1,16 @@
+{
+    "event_id": "EVT_002",
+    "event_type": "Person Detected / Person Movement",
+    "person_id": 2,
+    "start_time": "10:31:00",
+    "end_time": "10:31:05",
+    "confidence": 0.86,
+    "bbox": [
+        1153.66,
+        1654.32,
+        1378.37,
+        2443.56
+    ],
+    "source_video": "sample_video.mp4",
+    "clip_path": "clips/evt_2.mp4"
+}

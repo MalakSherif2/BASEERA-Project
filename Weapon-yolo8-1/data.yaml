@@ -1,0 +1,23 @@
+names:
+- '0'
+- Grenade
+- Gun
+- Knife
+- Missile
+- Pistol
+- hand
+- handgun
+- heavyweapon
+- pistol_c
+- pistol_m
+- rifle
+nc: 12
+roboflow:
+  license: CC BY 4.0
+  project: weapon-yolo8-7ktme
+  url: https://universe.roboflow.com/shahinaz-salah-s-workspace/weapon-yolo8-7ktme/dataset/1
+  version: 1
+  workspace: shahinaz-salah-s-workspace
+test: ../test/images
+train: ../train/images
+val: ../valid/images

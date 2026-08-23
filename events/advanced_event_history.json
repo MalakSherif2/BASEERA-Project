@@ -1,0 +1,18 @@
+[
+    {
+        "event_id": "EVT-1787115766-4",
+        "timestamp": "2026-08-19 08:02:46",
+        "person_id": 4,
+        "behavior": "Fighting",
+        "weapon_detected": true,
+        "confidence": 94.7,
+        "severity": "CRITICAL",
+        "bounding_box": [
+            100,
+            100,
+            300,
+            400
+        ],
+        "segmentation_active": true
+    }
+]
