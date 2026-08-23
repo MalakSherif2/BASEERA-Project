@@ -1,4 +1,4 @@
-## 👀BASEERA Project
+# 👀BASEERA Project
 AI Security Command Center
 Multi-model computer vision pipeline for behavioral intelligence, threat detection, and AI-assisted security analysis.
 
@@ -8,15 +8,15 @@ BASEERA is an AI-powered video surveillance and behavioral intelligence platform
 Problem
 Traditional CCTV and surveillance systems are largely passive — footage is recorded but rarely analyzed in real time, and operators are left to manually review hours of video to spot suspicious activity, weapons, or altercations.
 
-# Motivation
-VISIONGUARD explores how multiple, purpose-built Computer Vision and Deep Learning models can be combined into a single pipeline that goes beyond simple object detection — tracking individuals over time, interpreting their behavior, correlating detected weapons with specific people, and summarizing findings in a way a human security operator can quickly act on.
+## Motivation
+BASEERA explores how multiple, purpose-built Computer Vision and Deep Learning models can be combined into a single pipeline that goes beyond simple object detection — tracking individuals over time, interpreting their behavior, correlating detected weapons with specific people, and summarizing findings in a way a human security operator can quickly act on.
 
-# What VISIONGUARD Solves
+## What BASEERA Solves
 Turns raw surveillance video into structured, per-person intelligence (identity, behavior, weapon association, severity).
 Reduces the need to manually scrub through footage by surfacing ranked events (CRITICAL → LOW).
 Adds a natural-language security analyst layer (Gemini) that explains why an event was flagged, grounded strictly in the pipeline's own telemetry.
 How Multiple AI Models Cooperate
-Rather than relying on a single model, VISIONGUARD layers several specialized components — pose tracking, weapon detection, and multiple temporal behavior models (LSTM, Temporal Transformer, Spatio-Temporal Fusion) — so that behavior classification and weapon-to-person association can be cross-checked instead of relying on one signal alone.
+Rather than relying on a single model, BASEERA layers several specialized components — pose tracking, weapon detection, and multiple temporal behavior models (LSTM, Temporal Transformer, Spatio-Temporal Fusion) — so that behavior classification and weapon-to-person association can be cross-checked instead of relying on one signal alone.
 
 ## 🎬 System Demo
 ---
@@ -25,35 +25,45 @@ flowchart TD
     A[Input Surveillance Video] --> B[YOLO11 Pose Detection]
     B --> C[ByteTrack Identity Tracking]
     C --> D[Temporal Keypoint Sequence per Person]
+
     D --> E[LSTM Behavioral Classifier]
     D --> F[Temporal Transformer]
     D --> G[Spatio-Temporal Fusion Model]
+
     A --> H[Custom Weapon Detection - YOLO]
     H --> I[Weapon–Person Association<br/>BBox Center + Nearest Distance]
     C --> I
+
     I --> J[SAM ViT-B Segmentation<br/>on Weapon-Associated Persons]
+
     E --> K[Event Severity Scoring]
     F --> K
     G --> K
     I --> K
+
     K --> L[Advanced Event Intelligence Engine]
+
     L --> M[Gemini AI Security Analyst]
     L --> N[Streamlit Security Dashboard]
+
     M --> N
     N --> O[AI-Generated Incident Report]
 
 ## 🔄 End-to-End Workflow
-Upload — A surveillance video is uploaded through the Streamlit dashboard (dashboard/app.py) or passed directly to src/pipeline.py.
-Pose Detection & Tracking — YOLO11-Pose (yolo11n-pose.pt) detects people frame-by-frame; ByteTrack persists identities across frames, assigning a stable person_id.
-Keypoint Sequencing — For each tracked person, 2D keypoints (34 values: 17 keypoints × x,y) are accumulated into a per-person temporal sequence.
-Weapon Detection — A custom-trained YOLO model (weapon_detect_best.pt) scans each frame for weapons.
-Weapon–Person Association — Detected weapon boxes are matched to the nearest tracked person whose bounding box contains the weapon's center point, rather than flagging every person in frame.
-Behavior Classification — Once a person has enough accumulated keypoint frames, the LSTM behavioral classifier (temporal_behavior_model.pt) predicts a behavior label (Fighting, Robbery, Stealing, or Normal Movement) with a confidence score over a sliding window.
-Segmentation (conditional) — If SAM ViT-B is loaded and a weapon association is active, segmentation masks are generated periodically to visually highlight the relevant region.
-Severity Scoring — Each tracked person's final record is scored (CRITICAL, HIGH, MEDIUM, LOW) using a rule-based function that considers weapon detection and behavior confidence.
-Event Aggregation — Results are consolidated into events/event_history/parsed_events.json, and (when the Advanced Event Engine is active) advanced_event_history.json.
-Dashboard Rendering — The Streamlit dashboard loads the JSON output and renders KPIs, threat level, annotated video, per-person cards, and event timelines.
-AI Security Analyst (optional) — If a Gemini API key is configured, the dashboard can query Gemini with the machine-generated evidence to produce event explanations, answer free-form security questions, and generate a full incident report.
+|   Step | Stage                              | Description                                                                                                                                                                                       |
+| -----: | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  **1** | **Upload**                         | A surveillance video is uploaded through the Streamlit dashboard (`dashboard/app.py`) or passed directly to `src/pipeline.py`.                                                                    |
+|  **2** | **Pose Detection & Tracking**      | YOLO11-Pose (`yolo11n-pose.pt`) detects people frame-by-frame, while ByteTrack maintains identities and assigns a stable `person_id`.                                                             |
+|  **3** | **Keypoint Sequencing**            | For each tracked person, 2D keypoints are accumulated into a temporal sequence containing **34 values** (17 keypoints × x,y).                                                                     |
+|  **4** | **Weapon Detection**               | A custom-trained YOLO model (`weapon_detect_best.pt`) scans each frame for weapons.                                                                                                               |
+|  **5** | **Weapon–Person Association**      | Detected weapons are matched to the nearest tracked person whose bounding box contains the weapon's center point, preventing every person in the frame from being flagged.                        |
+|  **6** | **Behavior Classification**        | Once enough keypoint frames are accumulated, the LSTM (`temporal_behavior_model.pt`) predicts **Fighting, Robbery, Stealing, or Normal Movement** with a confidence score using a sliding window. |
+|  **7** | **Segmentation (Conditional)**     | When SAM ViT-B is loaded and a weapon association is active, segmentation masks are periodically generated to highlight the relevant region.                                                      |
+|  **8** | **Severity Scoring**               | Each tracked person's final record receives a severity level: **CRITICAL, HIGH, MEDIUM, or LOW**, based on weapon detection and behavior confidence.                                              |
+|  **9** | **Event Aggregation**              | Results are consolidated into `events/event_history/parsed_events.json` and, when active, `advanced_event_history.json`.                                                                          |
+| **10** | **Dashboard Rendering**            | The Streamlit dashboard loads the JSON output and displays KPIs, threat level, annotated video, per-person cards, and event timelines.                                                            |
+| **11** | **AI Security Analyst (Optional)** | When a Gemini API key is configured, Gemini uses the machine-generated evidence to provide event explanations, answer security questions, and generate a complete incident report.                |
+
 
 ## 🤖 AI Components
 | Component                     | Purpose                                                                                                 | Output                                                                       |
@@ -70,15 +80,12 @@ AI Security Analyst (optional) — If a Gemini API key is configured, the dashbo
 | **Gemini Security Analyst**   | Interprets generated evidence in natural language based strictly on the provided telemetry              | Event explanations, chat answers, incident reports                           |
 
 ## 🚨 Threat & Event Intelligence
-Each tracked person is assigned a severity level based on the rule-based logic implemented in src/pipeline.py:
-
-CRITICAL — A weapon was associated with the person (regardless of behavior), or a weapon was detected together with Fighting behavior.
-HIGH — Behavior classified as Fighting with a confidence of 0.70 or higher.
-MEDIUM — Behavior classified as Fighting, Robbery, or Stealing (below the HIGH confidence threshold).
-LOW — No weapon association and no flagged behavior above threshold (includes Normal Movement and Insufficient Temporal Data).
-The dashboard surfaces an overall Current Threat Level by checking, in order, whether any CRITICAL, HIGH, or MEDIUM events exist in the current run's results.
-
-Events are also sorted by severity (highest first) and start frame, so the most urgent detections surface first in both the JSON output and the dashboard's event list.
+| Severity        | Condition                                                                                                                               | Meaning                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| 🔴 **CRITICAL** | A weapon is associated with the person, **regardless of behavior**, OR a weapon is detected together with `Fighting` behavior           | Immediate/highest-priority threat       |
+| 🟠 **HIGH**     | `Fighting` behavior with confidence **≥ 0.70**                                                                                          | High-confidence aggressive behavior     |
+| 🟡 **MEDIUM**   | `Fighting`, `Robbery`, or `Stealing` with confidence **< 0.70**                                                                         | Suspicious behavior requiring attention |
+| 🟢 **LOW**      | No weapon association and no flagged behavior above the defined thresholds; includes `Normal Movement` and `Insufficient Temporal Data` | No significant threat detected          |
 
 ## 👤 Person Intelligence
 For every tracked identity, VISIONGUARD records:
