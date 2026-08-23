@@ -54,6 +54,7 @@ Severity Scoring — Each tracked person's final record is scored (CRITICAL, HIG
 Event Aggregation — Results are consolidated into events/event_history/parsed_events.json, and (when the Advanced Event Engine is active) advanced_event_history.json.
 Dashboard Rendering — The Streamlit dashboard loads the JSON output and renders KPIs, threat level, annotated video, per-person cards, and event timelines.
 AI Security Analyst (optional) — If a Gemini API key is configured, the dashboard can query Gemini with the machine-generated evidence to produce event explanations, answer free-form security questions, and generate a full incident report.
+
 ## 🤖 AI Components
 | Component                     | Purpose                                                                                                 | Output                                                                       |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
