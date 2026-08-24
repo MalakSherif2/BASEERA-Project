@@ -1,9 +1,9 @@
-# 🛡️ VISIONGUARD
+# 👀 BASEERA
 ### AI Security Command Center
 
 **Multi-model computer vision pipeline for behavioral intelligence, threat detection, and AI-assisted security analysis.**
 
-VISIONGUARD is an AI-powered video surveillance and behavioral intelligence platform. It analyzes surveillance footage by combining pose estimation, multi-object tracking, temporal behavior modeling, weapon detection, segmentation, and an LLM-based security analyst into a single end-to-end pipeline, presented through an interactive Streamlit command center.
+BASEERA is an AI-powered video surveillance and behavioral intelligence platform. It analyzes surveillance footage by combining pose estimation, multi-object tracking, temporal behavior modeling, weapon detection, segmentation, and an LLM-based security analyst into a single end-to-end pipeline, presented through an interactive Streamlit command center.
 
 ---
 
@@ -13,15 +13,15 @@ VISIONGUARD is an AI-powered video surveillance and behavioral intelligence plat
 Traditional CCTV and surveillance systems are largely passive — footage is recorded but rarely analyzed in real time, and operators are left to manually review hours of video to spot suspicious activity, weapons, or altercations.
 
 ### Motivation
-VISIONGUARD explores how multiple, purpose-built Computer Vision and Deep Learning models can be combined into a single pipeline that goes beyond simple object detection — tracking individuals over time, interpreting their behavior, correlating detected weapons with specific people, and summarizing findings in a way a human security operator can quickly act on.
+BASEERA explores how multiple, purpose-built Computer Vision and Deep Learning models can be combined into a single pipeline that goes beyond simple object detection — tracking individuals over time, interpreting their behavior, correlating detected weapons with specific people, and summarizing findings in a way a human security operator can quickly act on.
 
-### What VISIONGUARD Solves
+### What BASEERA Solves
 - Turns raw surveillance video into structured, per-person intelligence (identity, behavior, weapon association, severity).
 - Reduces the need to manually scrub through footage by surfacing ranked events (CRITICAL → LOW).
 - Adds a natural-language security analyst layer (Gemini) that explains *why* an event was flagged, grounded strictly in the pipeline's own telemetry.
 
 ### How Multiple AI Models Cooperate
-Rather than relying on a single model, VISIONGUARD layers several specialized components — pose tracking, weapon detection, and multiple temporal behavior models (LSTM, Temporal Transformer, Spatio-Temporal Fusion) — so that behavior classification and weapon-to-person association can be cross-checked instead of relying on one signal alone.
+Rather than relying on a single model, BASEERA layers several specialized components — pose tracking, weapon detection, and multiple temporal behavior models (LSTM, Temporal Transformer, Spatio-Temporal Fusion) — so that behavior classification and weapon-to-person association can be cross-checked instead of relying on one signal alone.
 
 
 ## 🎬 System Demo
@@ -229,7 +229,7 @@ Each pipeline run produces:
 ## 📁 Project Structure
 
 ```
-VISIONGUARD/
+BASEERA/
 │   app.py
 │   detector.py
 │   run_pipeline.py
